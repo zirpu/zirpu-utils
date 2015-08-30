@@ -32,7 +32,7 @@ class PyTest(TestCommand):
         self.test_suite = True
 
     def run_tests(self):
-        #import here, cause outside the eggs aren't loaded
+        # import here, cause outside the eggs aren't loaded
         import pytest
         errno = pytest.main(self.pytest_args)
         sys.exit(errno)
@@ -56,26 +56,24 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3.4',
-        'Operating System :: POSIX :: Linux',  # maybe someday MirageOS? :-)
+        'Operating System :: POSIX :: Linux',
         'Topic :: Utilities',
     ],
-    #keywords='i dunno what to put here. so there.',
+    # keywords='i dunno what to put here. so there.',
 
-    cmdclass = {'test': PyTest},
+    cmdclass={'test': PyTest},
     packages=find_packages(exclude=['tests']),
     zip_safe=False,
 
-    # include the data in example/data. see MANIFEST.in
     include_package_data=True,
 
     install_requires=install_requires,
     tests_require=tests_require,
 
-    ## 1-off scripts.
-    scripts=[
-        #'scripts/zirpu.self-signed.ssl.setup.sh',
-        #'scripts/decimal_time.py'
-    ],
+    # scripts=[
+    #     #'scripts/zirpu.self-signed.ssl.setup.sh',
+    #     #'scripts/decimal_time.py'
+    # ],
 
     # alternative scripts
     entry_points={
