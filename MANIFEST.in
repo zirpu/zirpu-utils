@@ -1,0 +1,6 @@
+include *.rst
+include *.py
+include LICENSE
+## data to include?
+#recursive-include example/data *.cfg *.dat
+ 

@@ -1,0 +1,7 @@
+bumpversion
+requests
+ipython
+colorama
+python-baseconv
+
+
