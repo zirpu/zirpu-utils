@@ -16,7 +16,7 @@ import logging
 import datetime
 import time
 
-from zirpu.time import return_time_list, color_time_list
+from zirpu.time import time_string
 
 header = ['yy', 'm', 'w', 'd', 'h', 'mn', 'sc']
 
@@ -25,12 +25,9 @@ def main(args):
 
     :param argparse.Namespace args:  CLI options.
     """
+
     ts = args.ts
-    iso = datetime.datetime.fromtimestamp(ts).isoformat()
-    a = return_time_list(ts, base=args.base)
-    if args.color:
-        a = color_time_list(a)
-    a = ':'.join(a[:-3]) + ' ' + ':'.join(a[-3:])
+    a = time_string(ts, color=args.color, base=args.base)
     print(a)
 
 
