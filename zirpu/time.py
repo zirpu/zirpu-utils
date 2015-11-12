@@ -55,6 +55,13 @@ def color_time_list(tl):
     return l
 
 
+def time_string(ts, color=False, base=10):
+    a = return_time_list(ts, base=base)
+    if color:
+        a = color_time_list(a)
+    return(':'.join(a[:-3]) + ' ' + ':'.join(a[-3:]))
+
+
 def main(argv=None):
     """main(sys.argv[1:])
 
@@ -77,11 +84,7 @@ def main(argv=None):
     else:
         args = parser.parse_args()
 
-    ts = args.ts
-    a = return_time_list(ts, base=args.base)
-    if args.color:
-        a = color_time_list(a)
-    a = ':'.join(a[:-3]) + ' ' + ':'.join(a[-3:])
+    a = time_string(args.ts, color=args.color, base=args.base)
     print(a)
 
 
