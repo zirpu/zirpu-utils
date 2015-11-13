@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 #
 """Decimal time module.
-"""
 
-# import os
-# #default to UTC.
-# os.environ['TZ'] = 'UTC'
+   Assumption:  We're using UTC as the default, and only, timezone.
+"""
 
 import sys
 import argparse
@@ -56,6 +54,11 @@ def color_time_list(tl):
 
 
 def time_string(ts, color=False, base=10):
+    """Returns a timestring in 'yy:m:w:d h:mm:ss' format, optionally ansi color coded.
+
+    Uses base 10 as default.
+    """
+
     a = return_time_list(ts, base=base)
     if color:
         a = color_time_list(a)
