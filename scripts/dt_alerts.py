@@ -10,6 +10,7 @@ Runs from cron every minute.  Uses Redis priority-queue for storing alerts at ti
 from __future__ import print_function
 
 import os
+import io
 
 import argparse
 import logging
@@ -17,6 +18,8 @@ import logging
 import datetime
 import time
 import redis
+
+from subprocess import Popen, PIPE
 
 from zirpu.time import time_string
 
@@ -36,22 +39,20 @@ def main(args):
     if bloop:
         bloop = int(bloop[0])
         delta = bloop - now
-        print(bloop, now, delta)
         if delta < 60:
             time.sleep(delta)
+            r.zremrangebyrank(Q, 0, 0)
             a = time_string(bloop, color=args.color, base=args.base)
             # send alert.  email for now.
             print(a)   # using cron.
-            r.zremrangebyrank(Q, 0, 0)
+            send_mail(a)
         else:
-            #r.zadd(Q, bloop, str(bloop))
             return
     else:
         for i in range(0, 10001):  # dec.hourly checks.
             if check(now + i):
                 temp = now + i
                 r.zadd(Q, temp, str(temp))
-                a = time_string(temp, color=args.color, base=args.base)
                 print('added: {}'.format(temp))
 
 def check(ts):
@@ -62,6 +63,18 @@ def check(ts):
     for i in range(8, 4, -1):
         if ts.endswith('0'*i):
             return True
+
+def send_mail(msg):
+    p = Popen("mail -s'{}' zirpubolci@gmail.com".format(msg), shell=True,
+              stdin=PIPE, stdout=PIPE, stderr=PIPE)
+
+    msg += ' ' + datetime.datetime.now().isoformat()
+    (stdout, stderr) = p.communicate(memoryview(msg.encode()))
+
+    if stdout or stderr:
+        print(stdout)
+        print(stderr)
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='template cli script')
