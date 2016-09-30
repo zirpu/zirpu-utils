@@ -3,5 +3,8 @@ requests
 ipython
 colorama
 python-baseconv
-
-
+jupyter
+scipy
+matplotlib
+ggplot
+bokeh
