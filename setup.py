@@ -43,7 +43,7 @@ setup(
     description="Zirpu's Misc. Utilities.",
     long_description=open(HERE + '/README.rst').read(),
 
-    version='0.4.0',
+    version='0.5.0',
 
     author='Allan Bailey',
     author_email='zirpubolci@gmail.com',
