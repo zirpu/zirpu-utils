@@ -1,10 +1,8 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 """Decimal time.
 """
-
-from __future__ import print_function
 
 import os
 #default to UTC.
@@ -20,25 +18,34 @@ from zirpu.time import time_string
 
 header = ['yy', 'm', 'w', 'd', 'h', 'mn', 'sc']
 
+def print_time(ts):
+    a = time_string(ts, color=args.color, base=args.base)
+    print(a)
+
+
 def main(args):
     """main(args)
 
     :param argparse.Namespace args:  CLI options.
     """
 
-    ts = args.ts
-    a = time_string(ts, color=args.color, base=args.base)
-    print(a)
+    while args.loop:
+        ts = int(time.time())
+        print_time(ts)
+        time.sleep(1)
+    else:
+        print_time(args.ts)
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='template cli script')
+    parser = argparse.ArgumentParser(description='decimal time script.')
 
     parser.add_argument('--debug', default=False, action='store_true', help="debug flag.")
 
     parser.add_argument('--ts', default=int(time.time()), action='store', help="timestamp. default now().")
     parser.add_argument('--base', default=10, action='store', type=int, help="base from 2-64. default 10.")
     parser.add_argument('--color', default=False, action='store_true', help="colorize time positions.")
+    parser.add_argument('--loop', default=False, action='store_true', help="repeat every second.")
     args = parser.parse_args()
 
     main(args)
@@ -61,11 +68,12 @@ if __name__ == '__main__':
 # 14/3/8/4/8:51:47
 # 14:3:8:4/8:51:47
 # 14:3:8:4 8:51:47
+
 # mega years.  keeps 'century' unit.
 # mm yy m w d h mm ss
 # 00:14:3:8:4 8:51:47
 
-# mm 1,000,000,000 =~ 11,574.074 days, 385.80 months, 32.15 years.
+# mm 100,0000,0000 =~ 115,740.7407 days, 3,858.0247 months, 317.0979 years.
 
 
 #  y m w d h mn sc
