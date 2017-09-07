@@ -50,7 +50,8 @@ PUNCTS  = {
 def main(args):
     lets = list(LETTERS.keys())
     lets.sort()
-    
+    lets = lets[:26]  # just A-Z
+
     while True:
         ts = int(time.time())
         now = str(ts)
@@ -62,11 +63,16 @@ def main(args):
             # play h and mm.
             os.system("ff {} {} {}".format(*fs))
             print(time_string(now))
-            # play 4 letters, rotating window of a-z.
-            tmp = [lets.pop(0) for i in range(4)]
+
+            time.sleep(1)
+            
+            # play 3 letters, rotating window of a-z.
+            tmp = [lets.pop(0) for i in range(3)]
             for i in tmp: lets.append(i)
             t = [LETTERS[i] for i in tmp]
-            os.system("ff {} {} {} {}".format(*t))
+            os.system("ff {} {} {}".format(*t))
+            print(' '.join(tmp))
+            os.system("ff {} {} {}".format(*t))
             print(' '.join(tmp))
         else:  # sleep until ss == 00
             sl = 100 - (int(time.time()) % 100)
