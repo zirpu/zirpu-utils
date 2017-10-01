@@ -52,18 +52,18 @@ def dectime():
 class Timer(object):
     def __init__(self):
         self.label = pyglet.text.Label(dectime(), font_size=120,
-                                       x=560,
-                                       y=940,
+                                       x=0,
+                                       y=0,
                                        anchor_x='left', anchor_y='baseline')
         # x=window.width//2, y=window.height//2,
-        self.t0 = pyglet.media.load('/home/allan/sounds/SS/0.wav', streaming=False)
-        self.tn = pyglet.media.load('/home/allan/sounds/SS/N.wav', streaming=False)
-        self.cwn = {}
-        for n in NUMBERS:
-            self.cwn[n] = pyglet.media.load(NUMBERS[n], streaming=False)
-        self.cwl = {}
-        for n in LETTERS:
-            self.cwl[n] = pyglet.media.load(LETTERS[n], streaming=False)
+        # self.t0 = pyglet.media.load('/home/allan/sounds/SS/0.wav', streaming=False)
+        # self.tn = pyglet.media.load('/home/allan/sounds/SS/N.wav', streaming=False)
+        # self.cwn = {}
+        # for n in NUMBERS:
+        #     self.cwn[n] = pyglet.media.load(NUMBERS[n], streaming=False)
+        # self.cwl = {}
+        # for n in LETTERS:
+        #     self.cwl[n] = pyglet.media.load(LETTERS[n], streaming=False)
             
         self.block = False
 
