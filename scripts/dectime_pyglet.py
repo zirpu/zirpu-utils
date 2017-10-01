@@ -65,6 +65,8 @@ class Timer(object):
         for n in LETTERS:
             self.cwl[n] = pyglet.media.load(LETTERS[n], streaming=False)
             
+        self.block = False
+
         self.reset()
 
     def reset(self, bogus=None):
@@ -81,14 +83,21 @@ class Timer(object):
         h  = dt[-7]
         self.label.text = dt
 
+        # turning off sound for now.
+        return
+    
+        if self.block:
+            return
+        
         # FIX: timing issue. update continues being called. how to play cw over/with the ticks?
         # if ss == '00':
+        #     self.block = True
         #     # play cw.
         #     self.cwn[h].play()
         #     self.cwn[mm[0]].play()
         #     self.cwn[mm[1]].play()
-
-
+        #     self.block = False
+            
         if ss[1] == '0':
             self.t0.play()
         else:
