@@ -1,7 +1,5 @@
-bumpversion
-requests
-ipython
 colorama
+ipython
 python-baseconv
 jupyter
 twine
