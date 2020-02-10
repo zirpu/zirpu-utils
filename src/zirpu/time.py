@@ -90,7 +90,7 @@ def main(argv=None):
     parser.add_argument('--ts', default=int(time.time()), action='store',
                         help="timestamp. default now().")
     parser.add_argument('--base', default=10, action='store', type=int,
-                        help="base from 2-64. default 10.")
+                        help="base from 2-62. default 10.")
     parser.add_argument('--color', default=False, action='store_true',
                         help="colorize time positions.")
 
