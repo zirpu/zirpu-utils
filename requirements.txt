@@ -1,6 +1,5 @@
-colorama
 ipython
-python-baseconv
 jupyter
-twine
+python-baseconv
 tmuxp
+twine
