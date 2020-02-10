@@ -43,37 +43,33 @@ setup(
     description="Zirpu's Misc. Utilities.",
     long_description=open(HERE + '/README.rst').read(),
 
-    version='0.9.0',
+    version='0.9.9',
 
     author='Allan Bailey',
-    author_email='zirpubolci@gmail.com',
+    author_email='allan@zirpu.org',
 
-    url="http://zirpu.org",
+    url="http://blahg.zirpu.org",
 
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Console',
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         'Operating System :: POSIX :: Linux',
         'Topic :: Utilities',
     ],
     # keywords='i dunno what to put here. so there.',
 
     cmdclass={'test': PyTest},
-    packages=find_packages(exclude=['tests']),
+    package_dir={"": "src"},
+    packages=find_packages(exclude=['tests'], where="src"),
     zip_safe=False,
 
     include_package_data=True,
 
     install_requires=install_requires,
     tests_require=tests_require,
-
-    # scripts=[
-    #     #'scripts/zirpu.self-signed.ssl.setup.sh',
-    #     #'scripts/decimal_time.py'
-    # ],
 
     # alternative scripts
     entry_points={
